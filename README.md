@@ -33,9 +33,7 @@ Nodes:
       ApiHost: "http://127.0.0.1:667"
       ApiKey: "123"
       NodeID: 41
-      NodeType: V2ray # Node type: V2ray, Shadowsocks, Trojan
       Timeout: 30 # Timeout for the api request
-      EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
@@ -46,7 +44,6 @@ Nodes:
       UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
       EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
       DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
-      EnableProxyProtocol: false # Only works for WebSocket and TCP
       EnableFallback: false # Only support for Trojan and Vless
       FallBackConfigs:  # Support multiple fallbacks
         -
@@ -66,16 +63,14 @@ Nodes:
           ALICLOUD_SECRET_KEY: bbb
   # -
   #   PanelType: "V2board" # Panel type: SSPanel, V2board
-  #   ApiConfig:
-  #     ApiHost: "http://127.0.0.1:668"
-  #     ApiKey: "123"
-  #     NodeID: 4
-  #     NodeType: Shadowsocks # Node type: V2ray, Shadowsocks, Trojan
-  #     Timeout: 30 # Timeout for the api request
-  #     EnableVless: false # Enable Vless for V2ray Type
-  #     EnableXTLS: false # Enable XTLS for V2ray and Trojan
-  #     SpeedLimit: 0 # Mbps, Local settings will replace remote settings
-  #     DeviceLimit: 0 # Local settings will replace remote settings
+	  #   ApiConfig:
+	  #     ApiHost: "http://127.0.0.1:668"
+	  #     ApiKey: "123"
+	  #     NodeID: 4
+	  #     Timeout: 30 # Timeout for the api request
+	  #     EnableXTLS: false # Enable XTLS for V2ray and Trojan
+	  #     SpeedLimit: 0 # Mbps, Local settings will replace remote settings
+	  #     DeviceLimit: 0 # Local settings will replace remote settings
   #   ControllerConfig:
   #     ListenIP: 0.0.0.0 # IP address you want to listen
   #     UpdatePeriodic: 10 # Time to update the nodeinfo, how many sec.
