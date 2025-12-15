@@ -108,12 +108,21 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/ECYCloud/XrayR-release/master/install.sh) $version
-    if [[ $? == 0 ]]; then
-        echo -e "${green}更新完成，已自动重启 XrayR，请使用 XrayR log 查看运行日志${plain}"
-        exit
-    fi
+		bash <(curl -Ls https://raw.githubusercontent.com/ECYCloud/XrayR-release/master/install.sh) $version
+		if [[ $? == 0 ]]; then
+			# 安装脚本执行成功后，根据实际重启结果只给出“成功/失败”两种提示，避免误导维护人员
+			sleep 2
+			check_status
+			if [[ $? == 0 ]]; then
+				echo -e "${green}更新完成，重启 XrayR 成功，请使用 XrayR log 查看运行日志。${plain}"
+			else
+				echo -e "${red}更新完成，重启 XrayR 失败，请使用 XrayR log 查看运行日志。${plain}"
+			fi
+			# 无论通过菜单还是命令行调用，完成后都直接退出脚本，保持与原有行为一致
+			exit
+		fi
 
+    # 安装脚本执行失败时，仅在菜单模式下返回主菜单；命令行模式直接结束并保留错误输出
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
