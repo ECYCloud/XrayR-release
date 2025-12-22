@@ -76,10 +76,10 @@ fi
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
         yum install epel-release -y
-	    yum install wget curl unzip tar crontabs socat iptables -y
+	yum install wget curl unzip tar crontabs socat iptables -y
     else
         apt update -y
-	    apt install wget curl unzip tar cron socat iptables -y
+	apt install wget curl unzip tar cron socat iptables -y
     fi
 }
 
@@ -159,9 +159,9 @@ install_XrayR() {
         sleep 2
         check_status
         echo -e ""
-        if [[ $? == 0 ]]; then
-            echo -e "${green}XrayR 重启成功${plain}"
-        else
+        # 这里只在启动失败时给出警告，避免在上层脚本（如 XrayR update）
+        # 再次根据实际状态给出成功/失败提示时出现相互矛盾的“重启成功”字样。
+        if [[ $? != 0 ]]; then
             echo -e "${red}XrayR 可能启动失败，请稍后使用 XrayR log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/ECYCloud/XrayR/wiki${plain}"
         fi
     fi
